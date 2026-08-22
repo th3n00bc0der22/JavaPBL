@@ -1,0 +1,25 @@
+interface ou classe abstrata personagem
+
+
+
+classe personagem importante
+
+
+classe personagem relacionável
+
+
+classe protagonista
+
+
+
+
+
+classe itens
+
+
+classe interface?
+
+
+classe inventário
+
+
