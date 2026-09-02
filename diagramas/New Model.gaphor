@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gaphor xmlns="https://gaphor.org/model" xmlns:Core="https://gaphor.org/modelinglanguage/Core" xmlns:UML="https://gaphor.org/modelinglanguage/UML" version="4" gaphor-version="3.3.2">
+<model>
+<Core:StyleSheet id="58d6989a-66f8-11ec-b4c8-0456e5e540ed"/>
+<UML:Package id="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed">
+<name>
+<val>classes</val>
+</name>
+<ownedDiagram>
+<reflist>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</reflist>
+</ownedDiagram>
+<ownedType>
+<reflist>
+<ref refid="b0123fcc-a6ec-11f1-bcad-734458db0b42"/>
+<ref refid="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044"/>
+<ref refid="b3610bf3-a70b-11f1-89fa-c96b68eac044"/>
+</reflist>
+</ownedType>
+<packagedElement>
+<reflist>
+<ref refid="b0123fcc-a6ec-11f1-bcad-734458db0b42"/>
+<ref refid="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044"/>
+<ref refid="b3610bf3-a70b-11f1-89fa-c96b68eac044"/>
+</reflist>
+</packagedElement>
+</UML:Package>
+<UML:Diagram id="58d6c536-66f8-11ec-b4c8-0456e5e540ed">
+<element>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</element>
+<name>
+<val>diagrama</val>
+</name>
+<ownedPresentation>
+<reflist>
+<ref refid="b0145a27-a6ec-11f1-80a3-734458db0b42"/>
+<ref refid="8b6f1630-a70a-11f1-ade8-c96b68eac044"/>
+<ref refid="b36235fb-a70b-11f1-b10d-c96b68eac044"/>
+</reflist>
+</ownedPresentation>
+</UML:Diagram>
+<UML:Class id="b0123fcc-a6ec-11f1-bcad-734458db0b42">
+<isAbstract>
+<val>True</val>
+</isAbstract>
+<name>
+<val>Personagem</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="32b98d43-a6ed-11f1-b26e-734458db0b42"/>
+<ref refid="396c47b3-a6ed-11f1-91ab-734458db0b42"/>
+</reflist>
+</ownedAttribute>
+<ownedOperation>
+<reflist>
+<ref refid="981c5738-a6f4-11f1-89e1-734458db0b42"/>
+</reflist>
+</ownedOperation>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="b0145a27-a6ec-11f1-80a3-734458db0b42"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="b0145a27-a6ec-11f1-80a3-734458db0b42">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 42.1134548893682, 2.986098642702418)</val>
+</matrix>
+<top-left>
+<val>(0.0, 58.48534594641792)</val>
+</top-left>
+<width>
+<val>179.51648260045934</val>
+</width>
+<height>
+<val>163.74513043297662</val>
+</height>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<subject>
+<ref refid="b0123fcc-a6ec-11f1-bcad-734458db0b42"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="32b98d43-a6ed-11f1-b26e-734458db0b42">
+<isReadOnly>
+<val>True</val>
+</isReadOnly>
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="b0123fcc-a6ec-11f1-bcad-734458db0b42"/>
+</structuredClassifier>
+<typeValue>
+<val>int</val>
+</typeValue>
+</UML:Property>
+<UML:Property id="396c47b3-a6ed-11f1-91ab-734458db0b42">
+<name>
+<val>nome</val>
+</name>
+<structuredClassifier>
+<ref refid="b0123fcc-a6ec-11f1-bcad-734458db0b42"/>
+</structuredClassifier>
+<typeValue>
+<val>String</val>
+</typeValue>
+</UML:Property>
+<UML:Operation id="981c5738-a6f4-11f1-89e1-734458db0b42">
+<class_>
+<ref refid="b0123fcc-a6ec-11f1-bcad-734458db0b42"/>
+</class_>
+<name>
+<val>falar</val>
+</name>
+</UML:Operation>
+<UML:Class id="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044">
+<name>
+<val>Cena</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="9d77df17-a70a-11f1-8822-c96b68eac044"/>
+<ref refid="ae74ed44-a70a-11f1-b16e-c96b68eac044"/>
+</reflist>
+</ownedAttribute>
+<ownedOperation>
+<reflist>
+<ref refid="bb0ed511-a70a-11f1-8df3-c96b68eac044"/>
+</reflist>
+</ownedOperation>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="8b6f1630-a70a-11f1-ade8-c96b68eac044"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="8b6f1630-a70a-11f1-ade8-c96b68eac044">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 265.3124694824219, 61.47144458912034)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>179.0625</val>
+</width>
+<height>
+<val>163.74513043297662</val>
+</height>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<subject>
+<ref refid="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="9d77df17-a70a-11f1-8822-c96b68eac044">
+<isReadOnly>
+<val>True</val>
+</isReadOnly>
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044"/>
+</structuredClassifier>
+<typeValue>
+<val>int</val>
+</typeValue>
+</UML:Property>
+<UML:Property id="ae74ed44-a70a-11f1-b16e-c96b68eac044">
+<name>
+<val>Titulo</val>
+</name>
+<structuredClassifier>
+<ref refid="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Operation id="bb0ed511-a70a-11f1-8df3-c96b68eac044">
+<class_>
+<ref refid="8b6dcdb2-a70a-11f1-a3f4-c96b68eac044"/>
+</class_>
+<name>
+<val>iniciarCena</val>
+</name>
+</UML:Operation>
+<UML:Class id="b3610bf3-a70b-11f1-89fa-c96b68eac044">
+<name>
+<val>Capitulo</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="c1a24488-a70b-11f1-9fba-c96b68eac044"/>
+<ref refid="d4feadaa-a70b-11f1-ac52-c96b68eac044"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="b36235fb-a70b-11f1-b10d-c96b68eac044"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="b36235fb-a70b-11f1-b10d-c96b68eac044">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 265.3124694824219, 306.0300383391203)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>179.0625</val>
+</width>
+<height>
+<val>150.53636791087968</val>
+</height>
+<diagram>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</diagram>
+<subject>
+<ref refid="b3610bf3-a70b-11f1-89fa-c96b68eac044"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="c1a24488-a70b-11f1-9fba-c96b68eac044">
+<isReadOnly>
+<val>True</val>
+</isReadOnly>
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="b3610bf3-a70b-11f1-89fa-c96b68eac044"/>
+</structuredClassifier>
+<typeValue>
+<val>int</val>
+</typeValue>
+</UML:Property>
+<UML:Property id="d4feadaa-a70b-11f1-ac52-c96b68eac044">
+<name>
+<val>cenas</val>
+</name>
+<structuredClassifier>
+<ref refid="b3610bf3-a70b-11f1-89fa-c96b68eac044"/>
+</structuredClassifier>
+<typeValue>
+<val>List&lt;cenas&gt;</val>
+</typeValue>
+</UML:Property>
+</model>
+</gaphor>
