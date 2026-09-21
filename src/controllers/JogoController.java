@@ -2190,6 +2190,10 @@ public class JogoController {
     // LOOP PRINCIPAL
     // =========================================================
 
+    // =========================================================
+    // LOOP PRINCIPAL
+    // =========================================================
+
     private void executarJogo() {
 
         while (!estadoJogo.isJogoEncerrado()) {
@@ -2247,6 +2251,17 @@ public class JogoController {
                             cenaAtual,
                             escolhasDisponiveis
                     );
+
+            // =================================================
+            // OPÇÃO DE VOLTAR AO MENU
+            // =================================================
+
+            if (opcaoEscolhida == 0) {
+
+                estadoJogo.encerrarJogo("MENU");
+
+                continue;
+            }
 
 
             // =================================================

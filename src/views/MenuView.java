@@ -181,6 +181,7 @@ public class MenuView {
                 "em sua própria casa."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -196,6 +197,7 @@ public class MenuView {
                 "começam a se misturar ao presente."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -211,6 +213,7 @@ public class MenuView {
                 "se relaciona com as pessoas envolvidas."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -245,6 +248,7 @@ public class MenuView {
                 "- as pistas encontradas durante a história."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -260,6 +264,7 @@ public class MenuView {
                 "tenham sido alcançadas anteriormente."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -275,6 +280,7 @@ public class MenuView {
                 "novamente muito tempo depois."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -286,6 +292,7 @@ public class MenuView {
                 "número correspondente à opção desejada."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -301,6 +308,7 @@ public class MenuView {
                 "podem levar a diferentes conclusões."
         );
 
+        Terminal.aplicaDelay(2500);
 
         System.out.println();
 
@@ -345,10 +353,12 @@ public class MenuView {
         System.out.println(
                 "Bruno Carneiro"
         );
+        Terminal.aplicaDelay(600);
 
         System.out.println(
                 "Raphael Henrique"
         );
+        Terminal.aplicaDelay(600);
 
         System.out.println();
 

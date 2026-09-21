@@ -100,10 +100,18 @@ public class JogoView {
                 || escolhasDisponiveis.isEmpty()) {
 
             System.out.println(
+                    "0 - Voltar ao menu principal"
+            );
+
+            System.out.println(
                     "[Pressione ENTER para continuar]"
             );
 
-            scanner.nextLine();
+            String input = scanner.nextLine();
+
+            if (input.trim().equals("0")) {
+                return 0;
+            }
 
             return -1;
         }
@@ -115,6 +123,10 @@ public class JogoView {
 
         System.out.println(
                 "----------- ESCOLHAS -----------"
+        );
+
+        System.out.println(
+                "0 - Voltar ao menu principal\n"
         );
 
 
@@ -160,9 +172,9 @@ public class JogoView {
             scanner.nextLine();
 
             /*
-             * O Controller tratará 0 como inválido.
+             * O Controller tratará uma entrada vazia ou letras como inválido.
              */
-            return 0;
+            return -99;
         }
     }
 
