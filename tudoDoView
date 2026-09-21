@@ -1,0 +1,149 @@
+package views;
+
+import models.Cena;
+import models.Dialogo;
+import models.Escolha;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+public class JogoView {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void renderizarDialogo(Dialogo dialogo) {
+        Terminal.limpaTerminal();
+        // Usa os métodos da classe Dialogo
+        System.out.println("[" + dialogo.getPersonagem().getNome() + "]");
+        System.out.println(dialogo.getConteudo());
+        System.out.print("\n(Pressione ENTER para continuar)");
+
+        scanner.nextLine();
+    }
+
+    public static int renderizarEscolhas(List<Escolha> escolhas) {
+        Terminal.limpaTerminal();
+
+        if (escolhas == null || escolhas.isEmpty()) {
+            System.out.println("[Fim. Pressione ENTER para voltar ao menu principal]");
+            scanner.nextLine();
+            return -1;
+        }
+
+        for (int i = 0; i < escolhas.size(); i++) {
+            System.out.println("Opção " + (i + 1) + " - " + escolhas.get(i).getTextoOpcao());
+        }
+
+        System.out.print("\nO que você faz? ");
+        try {
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpa buffer
+            return opcao;
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            return 0;
+        }
+    }
+
+    public static void apresentaErro(String mensagem) {
+        System.out.println(mensagem);
+        Terminal.aplicaDelay(900);
+    }
+}
+
+package views;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class MenuView {
+    // Usar um único Scanner para a aplicação evita vazamento de recursos e conflitos de I/O
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static int openMenu() {
+        Terminal.limpaTerminal();
+        System.out.println("------ Menu principal -------");
+        System.out.println("Opção 1 - Jogar");
+        System.out.println("Opção 2 - Créditos");
+        System.out.println("Opção 3 - Sair");
+        System.out.print("Digite o número da opção desejada: ");
+
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            // Limpa a sujeira do buffer do teclado (a letra ou símbolo digitado)
+            scanner.nextLine();
+            // Retorna -1 indicando ao Controller que a entrada não foi um número
+            return -1;
+        }
+    }
+
+    public static int openAtributesMenu() {
+        Terminal.limpaTerminal();
+        System.out.println("------ Menu de atributos -------");
+        System.out.println("Opção 1 - Sangue frio");
+        System.out.println("Opção 2 - Equilíbrio perfeito");
+        System.out.println("Opção 3 - Sangue quente");
+        System.out.print("Digite o número da opção desejada: ");
+
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            return -1;
+        }
+    }
+
+    public static void apresentaErro(String mensagem) {
+        System.out.println(mensagem);
+        Terminal.aplicaDelay(900);
+    }
+
+    public static void Creditos(){
+        Terminal.limpaTerminal();
+        System.out.println("Obrigado por jogar!");
+        Terminal.aplicaDelay(1000);
+        System.out.println("Desenvolvidor por:");
+        Terminal.aplicaDelay(700);
+        System.out.println("Bruno Carneiro E Raphael Henrique");
+        Terminal.aplicaDelay(1000);
+
+        // main([""]);
+    }
+
+
+
+
+
+
+}
+
+
+package views;
+
+public class Terminal {
+
+
+    public static void limpaTerminal(){
+        try {
+            String SO = System.getProperty("os.name");
+
+            if (SO.contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+            else{
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+
+        } catch (Exception e) {
+            System.out.println("terminal não limpo, excessão: " + e);
+        }
+    }
+
+    public static void aplicaDelay(int x){
+        try {
+            Thread.sleep(x);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+}

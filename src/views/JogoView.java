@@ -1,52 +1,178 @@
 package views;
 
 import models.Cena;
+import models.Dialogo;
 import models.Escolha;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class JogoView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
 
-    public static int mostrarCena(Cena cena) {
+    /*
+     * Exibe uma cena e as escolhas que o Controller
+     * determinou que estão disponíveis.
+     */
+    public static int mostrarCena(
+            Cena cena,
+            List<Escolha> escolhasDisponiveis) {
+
         Terminal.limpaTerminal();
 
-        // Imprime o cabeçalho e a narrativa
-        System.out.println("=== " + cena.getTitulo() + " ===");
-        System.out.println(cena.getTextoNarrativa());
+
+        // =========================
+        // TÍTULO DA CENA
+        // =========================
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println(
+                cena.getTitulo()
+        );
+
+        System.out.println(
+                "========================================"
+        );
+
         System.out.println();
 
-        List<Escolha> escolhas = cena.getEscolhas();
 
-        // Se a cena não tem escolhas, é um nó final (Fim de jogo)
-        if (escolhas == null || escolhas.isEmpty()) {
-            System.out.println("[Fim. Pressione ENTER para voltar ao menu principal]");
+        // =========================
+        // NARRATIVA
+        // =========================
+
+        if (cena.getTextoNarrativa() != null) {
+
+            System.out.println(
+                    cena.getTextoNarrativa()
+            );
+
+            System.out.println();
+        }
+
+
+        // =========================
+        // DIÁLOGOS
+        // =========================
+
+        for (Dialogo dialogo : cena.getDialogos()) {
+
+            /*
+             * Se existir personagem associado,
+             * mostramos:
+             *
+             * FAUAN: Texto...
+             */
+            if (dialogo.getPersonagem() != null) {
+
+                System.out.println(
+                        dialogo.getPersonagem().getNome()
+                                + ": "
+                                + dialogo.getConteudo()
+                );
+
+            } else {
+
+                /*
+                 * Permite utilizar Dialogo também
+                 * para descrições sem personagem.
+                 */
+                System.out.println(
+                        dialogo.getConteudo()
+                );
+            }
+
+            System.out.println();
+        }
+
+
+        // =========================
+        // CENA SEM ESCOLHAS
+        // =========================
+
+        if (escolhasDisponiveis == null
+                || escolhasDisponiveis.isEmpty()) {
+
+            System.out.println(
+                    "[Pressione ENTER para continuar]"
+            );
+
             scanner.nextLine();
-            return -1; // Sinaliza para o Controller encerrar o loop
+
+            return -1;
         }
 
-        // Imprime as escolhas dinamicamente numeradas (1, 2, 3...)
-        for (int i = 0; i < escolhas.size(); i++) {
-            System.out.println("Opção " + (i + 1) + " - " + escolhas.get(i).getTextoOpcao());
+
+        // =========================
+        // ESCOLHAS
+        // =========================
+
+        System.out.println(
+                "----------- ESCOLHAS -----------"
+        );
+
+
+        for (int i = 0;
+             i < escolhasDisponiveis.size();
+             i++) {
+
+            System.out.println(
+                    (i + 1)
+                            + " - "
+                            + escolhasDisponiveis
+                            .get(i)
+                            .getTextoOpcao()
+            );
         }
 
-        System.out.print("\nO que você faz? ");
+
+        System.out.print(
+                "\nEscolha uma opção: "
+        );
+
+
+        // =========================
+        // LEITURA DA OPÇÃO
+        // =========================
 
         try {
+
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpa o "Enter" do buffer
+
+            /*
+             * Remove o ENTER deixado pelo nextInt().
+             */
+            scanner.nextLine();
+
             return opcao;
+
         } catch (InputMismatchException e) {
-            scanner.nextLine(); // Limpa a sujeira se o usuário digitar letras
-            return 0; // 0 será tratado como erro pelo Controller
+
+            /*
+             * Remove a entrada inválida.
+             */
+            scanner.nextLine();
+
+            /*
+             * O Controller tratará 0 como inválido.
+             */
+            return 0;
         }
     }
 
+
     public static void apresentaErro(String mensagem) {
+
+        System.out.println();
+
         System.out.println(mensagem);
+
         Terminal.aplicaDelay(900);
     }
 }

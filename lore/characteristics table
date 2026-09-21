@@ -1,12 +1,12 @@
 # Tabelas de Deltas — "A Noite que Não se Apaga"
 
 > 0–100
-> Valores iniciais: `memória`=0, `estabilidade`=50, `culpa`=50, `confFauan`=50, `vincPassos`=50, `suspToin`=50
+> Valores iniciais: `memória`=0, `estabilidade`=50, `culpa`=50, `confDeFauan`=50, `vincPassos`=50, `suspToin`=50
 > 🔒 = escolha condicionada 
 
 ## Capítulo 1 — "A Noite que Não se Apaga"
 
-| Cena | Escolha | Memória | ConfFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
+| Cena | Escolha | Memória | confDeFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
 
 | 1 | A — "Eu congelei" | +15 | +10 | 0 | 0 | +10 | +10 | — |
 | 1 | B — "Eu tentei" | +5 | -10 | 0 | 0 | -10 | -15 | — |
@@ -32,9 +32,9 @@
 
 > Mecânica extra: cada escolha de tom (A=frio, B=equilibrado, C=quente) compara com o `Temperamento` fixo do personagem.
 > Tom == Temperamento → +5 EstabEmoc
-> Tom ≠ Temperamento → -5 EstabEmoc / +5 ConfFauan
+> Tom ≠ Temperamento → -5 EstabEmoc / +5 confDeFauan
 
-| Cena | Tom | Memória | ConfFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
+| Cena | Tom | Memória | confDeFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
 
 | 1 | A (frio) | +10 | 0 | 0 | -5 | 0 | 0 | — |
 | 1 | B (equilibrado) | +15 | +5 | 0 | +10 | 0 | 0 | — |
@@ -55,9 +55,9 @@
 
 ## Capítulo 3 — "Origem: Dois Meninos"
 
-> Flashback sem Fauan em cena, por isso ConfFauan não é afetado.
+> Flashback sem Fauan em cena, por isso confDeFauan não é afetado.
 
-| Cena | Tom | Memória | ConfFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
+| Cena | Tom | Memória | confDeFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
 |---|---|---|---|---|---|---|---|---|
 | 1 | A (frio) | +5 | 0 | +5 | 0 | 0 | 0 | — |
 | 1 | B (equilibrado) | +5 | 0 | +10 | -5 | +5 | 0 | — |
@@ -67,7 +67,7 @@
 
 ## Capítulo 4 — "O Queixo do Toin"
 
-| Cena | Escolha | Memória | ConfFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
+| Cena | Escolha | Memória | confDeFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc | Pista ganha |
 
 | 1 | A (frio) | +10 | 0 | -5 | 0 | 0 | 0 | — |
 | 1 | B (equilibrado) | +15 | +5 | 0 | 0 | 0 | 0 | — |
@@ -95,7 +95,7 @@
 
 ## Capítulo 5 — "O Veredito" (final)
 
-| Cena | Escolha | Memória | ConfFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc |
+| Cena | Escolha | Memória | confDeFauan | VincPassos | SuspToin | EstabEmoc | CulpaPerc |
 |---|---|---|---|---|---|---|---|
 | 1 | A (frio) | +5 | +5 | 0 | +5 | 0 | 0 |
 | 1 | B (equilibrado) | +10 | +10 | 0 | +10 | 0 | 0 |

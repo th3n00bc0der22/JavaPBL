@@ -1,0 +1,190 @@
+package controllers;
+
+import models.Capitulo;
+import models.Cena;
+import models.Dialogo;
+import models.Escolha;
+import models.Protagonista;
+import models.Psecundario;
+import views.JogoView;
+import java.util.ArrayList;
+import java.util.List;
+
+public class JogoController {
+
+    public JogoController() {}
+
+    // ==========================================
+    // CAMADA 1: O MACRO-LOOP (A CAMPANHA SOB DEMANDA)
+    // ==========================================
+    public void iniciarJogo(int atributoEscolhido) {
+        Protagonista jogador = new Protagonista(1, "Você");
+        int capituloAtualId = 1;
+
+        while (true) {
+            // Instancia apenas o bloco de dados necessário no momento
+            Capitulo capitulo = carregarCapituloNaMemoria(capituloAtualId, jogador);
+
+            // Se o método retornar null, significa que não há mais capítulos programados (Zerou o jogo)
+            if (capitulo == null) {
+                System.out.println("Parabéns! Você completou a história.");
+                break;
+            }
+
+            // O micro-loop processa o grafo deste capítulo
+            boolean sobreviveu = jogarCapitulo(capitulo);
+
+            if (!sobreviveu) {
+                JogoView.apresentaErro("\n[GAME OVER] A sua jornada termina aqui.");
+                break;
+            }
+
+            // O capítulo foi finalizado com sucesso. Prepara para carregar o próximo.
+            capituloAtualId++;
+        }
+        // Ao sair do loop, a stack volta para o MenuController
+    }
+
+    // ==========================================
+    // CAMADA 2: O FACTORY METHOD (GERADOR DE DADOS)
+    // ==========================================
+    private Capitulo carregarCapituloNaMemoria(int id, Protagonista jogador) {
+        switch (id) {
+            case 1:
+                return construirCapitulo1(jogador);
+            case 2:
+                return construirCapitulo2(jogador);
+            // Adicione os próximos capítulos aqui conforme for escrevendo o roteiro
+            default:
+                return null; // Retorna nulo quando acabar a história
+        }
+    }
+
+    // ==========================================
+    // CAMADA 3: O MICRO-LOOP (MOTOR DE CENAS)
+    // ==========================================
+    private boolean jogarCapitulo(Capitulo capitulo) {
+        int cenaAtualId = 1;
+
+        while (cenaAtualId != -1) {
+            Cena cenaAtual = null;
+
+            for (Cena c : capitulo.getCenas()) {
+                if (c.getId() == cenaAtualId) {
+                    cenaAtual = c;
+                    break;
+                }
+            }
+
+            if (cenaAtual == null) {
+                JogoView.apresentaErro("Erro: Cena não encontrada.");
+                return false;
+            }
+
+            for (Dialogo fala : cenaAtual.getDialogos()) {
+                JogoView.renderizarDialogo(fala);
+            }
+
+            boolean escolhaValida = false;
+            while (!escolhaValida) {
+                int opcao = JogoView.renderizarEscolhas(cenaAtual.getEscolhas());
+
+                if (opcao == -1) {
+                    return true; // Fim do capítulo, sobreviveu
+                } else if (opcao >= 1 && opcao <= cenaAtual.getEscolhas().size()) {
+                    int proximoId = cenaAtual.getEscolhas().get(opcao - 1).getProximaCenaId();
+
+                    if (proximoId == 0) {
+                        return false; // Game Over
+                    }
+
+                    cenaAtualId = proximoId;
+                    escolhaValida = true;
+                } else {
+                    JogoView.apresentaErro("Entrada inválida.");
+                }
+            }
+        }
+        return true;
+    }
+
+    // ==========================================
+    // MÉTODOS DE CONSTRUÇÃO DE ROTEIRO
+    // ==========================================
+    private Capitulo construirCapitulo1(Protagonista jogador) {
+        Capitulo cap = new Capitulo(1);
+        List<Cena> cenas = new ArrayList<>();
+        Psecundario npc = new Psecundario(2, "Guarda");
+
+        Cena cena1 = new Cena(1, "Capítulo 1: O Despertar");
+        cena1.adicionarDialogo(new Dialogo(jogador, "Preciso sair daqui...", "fala"));
+        cena1.adicionarEscolha(new Escolha("Fugir", 2));
+        cena1.adicionarEscolha(new Escolha("Pular a janela", 0)); // 0 = Morte
+
+        Cena cena2 = new Cena(2, "A Fuga");
+        cena2.adicionarDialogo(new Dialogo(npc, "Ele está fugindo!", "grito"));
+        // Sem escolhas = Capítulo finalizado.
+
+        cenas.add(cena1);
+        cenas.add(cena2);
+        cap.setCenas(cenas);
+        return cap;
+    }
+
+    private Capitulo construirCapitulo2(Protagonista jogador) {
+        Capitulo cap = new Capitulo(2);
+        List<Cena> cenas = new ArrayList<>();
+
+        Cena cena1 = new Cena(1, "Capítulo 2: A Floresta");
+        cena1.adicionarDialogo(new Dialogo(jogador, "Consegui escapar. A floresta é escura.", "pensamento"));
+        // Sem escolhas = Capítulo finalizado (para teste rápido)
+
+        cenas.add(cena1);
+        cap.setCenas(cenas);
+        return cap;
+    }
+}
+
+
+package controllers;
+
+import views.MenuView;
+
+import java.util.List;
+
+public class MenuController {
+
+    public static Boolean menuPrincipalController(){
+
+    //    System.out.printf("Hello and welcome!");
+        int option = 0;
+        while (option != 3) {
+            option = MenuView.openMenu();
+            while (!List.of(1, 2, 3).contains(option)){
+                MenuView.apresentaErro("A entrada fornecida é inválida.");
+                option = MenuView.openMenu();
+            }
+            int atributeOption = 0;
+            if (option == 1) {
+                atributeOption = MenuView.openAtributesMenu();
+
+                JogoController jogoController = new JogoController();
+                jogoController.iniciarJogo(atributeOption);
+
+                while (!List.of(1, 2, 3).contains(atributeOption)) {
+                    MenuView.apresentaErro("A entrada fornecida é inválida.");
+                    atributeOption = MenuView.openAtributesMenu();
+                }
+            }
+            if (option == 2)
+                MenuView.Creditos();
+
+            if (option == 3)
+                return true;
+        }
+        return false;
+    }
+
+
+}
+

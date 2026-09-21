@@ -4,63 +4,379 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuView {
-    // Usar um único Scanner para a aplicação evita vazamento de recursos e conflitos de I/O
-    private static final Scanner scanner = new Scanner(System.in);
+
+    /*
+     * Um único Scanner para toda a classe.
+     */
+    private static final Scanner scanner =
+            new Scanner(System.in);
+
+
+    // ==============================
+    // MENU PRINCIPAL
+    // ==============================
 
     public static int openMenu() {
+
         Terminal.limpaTerminal();
-        System.out.println("------ Menu principal -------");
-        System.out.println("Opção 1 - Jogar");
-        System.out.println("Opção 2 - Créditos");
-        System.out.println("Opção 3 - Sair");
-        System.out.print("Digite o número da opção desejada: ");
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println(
+                "           A NOITE QUE NÃO SE APAGA"
+        );
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println();
+
+        System.out.println(
+                "1 - Nova partida"
+        );
+
+        System.out.println(
+                "2 - Instruções"
+        );
+
+        System.out.println(
+                "3 - Créditos"
+        );
+
+        System.out.println(
+                "4 - Sair"
+        );
+
+        System.out.print(
+                "\nDigite o número da opção desejada: "
+        );
+
 
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            // Limpa a sujeira do buffer do teclado (a letra ou símbolo digitado)
+
+            int opcao = scanner.nextInt();
+
+            /*
+             * IMPORTANTE:
+             * remove o ENTER deixado pelo nextInt().
+             */
             scanner.nextLine();
-            // Retorna -1 indicando ao Controller que a entrada não foi um número
+
+            return opcao;
+
+        } catch (InputMismatchException e) {
+
+            scanner.nextLine();
+
             return -1;
         }
     }
+
+
+    // ==============================
+    // ESCOLHA DO TEMPERAMENTO
+    // ==============================
 
     public static int openAtributesMenu() {
+
         Terminal.limpaTerminal();
-        System.out.println("------ Menu de atributos -------");
-        System.out.println("Opção 1 - Sangue frio");
-        System.out.println("Opção 2 - Equilíbrio perfeito");
-        System.out.println("Opção 3 - Sangue quente");
-        System.out.print("Digite o número da opção desejada: ");
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println(
+                "        TEMPERAMENTO DE KATARINA"
+        );
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println();
+
+        System.out.println(
+                "Escolha como Katarina costuma reagir"
+        );
+
+        System.out.println(
+                "diante de situações de pressão."
+        );
+
+        System.out.println();
+
+        System.out.println(
+                "1 - Sangue frio"
+        );
+
+        System.out.println(
+                "2 - Equilíbrio"
+        );
+
+        System.out.println(
+                "3 - Sangue quente"
+        );
+
+        System.out.print(
+                "\nDigite o número da opção desejada: "
+        );
+
 
         try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
+
+            int opcao = scanner.nextInt();
+
             scanner.nextLine();
+
+            return opcao;
+
+        } catch (InputMismatchException e) {
+
+            scanner.nextLine();
+
             return -1;
         }
     }
 
-    public static void apresentaErro(String mensagem) {
+
+    // ==============================
+    // INSTRUÇÕES
+    // ==============================
+
+    public static void Instrucoes() {
+
+        Terminal.limpaTerminal();
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println(
+                "              INSTRUÇÕES"
+        );
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println();
+
+
+        System.out.println(
+                "Você acompanha Katarina, uma mulher"
+        );
+
+        System.out.println(
+                "que tenta reconstruir os acontecimentos"
+        );
+
+        System.out.println(
+                "de uma noite marcada por um incêndio"
+        );
+
+        System.out.println(
+                "em sua própria casa."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Durante um interrogatório conduzido pelo"
+        );
+
+        System.out.println(
+                "detetive Fauan, lembranças do passado"
+        );
+
+        System.out.println(
+                "começam a se misturar ao presente."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Suas escolhas determinam como Katarina"
+        );
+
+        System.out.println(
+                "responde, interpreta suas memórias e"
+        );
+
+        System.out.println(
+                "se relaciona com as pessoas envolvidas."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Ao longo da investigação, suas decisões"
+        );
+
+        System.out.println(
+                "podem alterar:"
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "- a memória de Katarina;"
+        );
+
+        System.out.println(
+                "- sua estabilidade emocional;"
+        );
+
+        System.out.println(
+                "- sua percepção de culpa;"
+        );
+
+        System.out.println(
+                "- sua relação com outros personagens;"
+        );
+
+        System.out.println(
+                "- as pistas encontradas durante a história."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Algumas respostas e caminhos só estarão"
+        );
+
+        System.out.println(
+                "disponíveis caso determinadas condições"
+        );
+
+        System.out.println(
+                "tenham sido alcançadas anteriormente."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Por isso, cada decisão pode provocar"
+        );
+
+        System.out.println(
+                "consequências imediatas ou aparecer"
+        );
+
+        System.out.println(
+                "novamente muito tempo depois."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Quando uma escolha aparecer, digite o"
+        );
+
+        System.out.println(
+                "número correspondente à opção desejada."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "Não existe um único caminho."
+        );
+
+        System.out.println(
+                "As decisões tomadas durante a investigação"
+        );
+
+        System.out.println(
+                "podem levar a diferentes conclusões."
+        );
+
+
+        System.out.println();
+
+        System.out.println(
+                "[Pressione ENTER para voltar ao menu]"
+        );
+
+        scanner.nextLine();
+    }
+
+
+    // ==============================
+    // CRÉDITOS
+    // ==============================
+
+    public static void Creditos() {
+
+        Terminal.limpaTerminal();
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println(
+                "               CRÉDITOS"
+        );
+
+        System.out.println(
+                "========================================"
+        );
+
+        System.out.println();
+
+        System.out.println(
+                "Desenvolvido por:"
+        );
+
+        Terminal.aplicaDelay(600);
+
+        System.out.println();
+
+        System.out.println(
+                "Bruno Carneiro"
+        );
+
+        System.out.println(
+                "Raphael Henrique"
+        );
+
+        System.out.println();
+
+        System.out.println(
+                "Obrigado por jogar!"
+        );
+
+        System.out.println();
+
+        System.out.println(
+                "[Pressione ENTER para voltar ao menu]"
+        );
+
+        scanner.nextLine();
+    }
+
+
+    // ==============================
+    // ERRO
+    // ==============================
+
+    public static void apresentaErro(
+            String mensagem) {
+
+        System.out.println();
+
         System.out.println(mensagem);
+
         Terminal.aplicaDelay(900);
     }
-
-    public static void Creditos(){
-        Terminal.limpaTerminal();
-        System.out.println("Obrigado por jogar!");
-        Terminal.aplicaDelay(1000);
-        System.out.println("Desenvolvidor por:");
-        Terminal.aplicaDelay(700);
-        System.out.println("Bruno Carneiro E Raphael Henrique");
-        Terminal.aplicaDelay(1000);
-
-        // main([""]);
-    }
-
-
-
-
-
-
 }

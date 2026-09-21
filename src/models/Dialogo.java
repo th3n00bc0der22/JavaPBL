@@ -1,6 +1,7 @@
 package models;
 
 public class Dialogo {
+
     private Personagem personagem;
     private String conteudo;
     private String tipo;
@@ -11,7 +12,15 @@ public class Dialogo {
         this.tipo = tipo;
     }
 
-    public Personagem getPersonagem() { return personagem; }
-    public String getConteudo() { return conteudo; }
-    public String getTipo() { return tipo; }
+    public Personagem getPersonagem() {
+        return personagem;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
 }

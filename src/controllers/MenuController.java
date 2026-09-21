@@ -6,37 +6,94 @@ import java.util.List;
 
 public class MenuController {
 
-    public static Boolean menuPrincipalController(){
+    public static Boolean menuPrincipalController() {
 
-    //    System.out.printf("Hello and welcome!");
         int option = 0;
-        while (option != 3) {
+
+
+        while (option != 4) {
+
             option = MenuView.openMenu();
-            while (!List.of(1, 2, 3).contains(option)){
-                MenuView.apresentaErro("A entrada fornecida é inválida.");
-                option = MenuView.openMenu();
+
+
+            while (!List.of(
+                    1, 2, 3, 4
+            ).contains(option)) {
+
+                MenuView.apresentaErro(
+                        "A entrada fornecida é inválida."
+                );
+
+                option =
+                        MenuView.openMenu();
             }
-            int atributeOption = 0;
+
+
+            /*
+             * NOVA PARTIDA
+             */
             if (option == 1) {
-                atributeOption = MenuView.openAtributesMenu();
 
-                JogoController jogoController = new JogoController();
-                jogoController.iniciarJogo(atributeOption);
+                int atributoOption =
+                        MenuView.openAtributesMenu();
 
-                while (!List.of(1, 2, 3).contains(atributeOption)) {
-                    MenuView.apresentaErro("A entrada fornecida é inválida.");
-                    atributeOption = MenuView.openAtributesMenu();
+
+                /*
+                 * Primeiro valida.
+                 */
+                while (!List.of(
+                        1, 2, 3
+                ).contains(atributoOption)) {
+
+                    MenuView.apresentaErro(
+                            "A entrada fornecida é inválida."
+                    );
+
+                    atributoOption =
+                            MenuView.openAtributesMenu();
                 }
-            }
-            if (option == 2)
-                MenuView.Creditos();
 
-            if (option == 3)
+
+                /*
+                 * Só depois inicia o jogo.
+                 */
+                JogoController jogoController =
+                        new JogoController();
+
+                jogoController.iniciarJogo(
+                        atributoOption
+                );
+            }
+
+
+            /*
+             * INSTRUÇÕES
+             */
+            if (option == 2) {
+
+                MenuView.Instrucoes();
+            }
+
+
+            /*
+             * CRÉDITOS
+             */
+            if (option == 3) {
+
+                MenuView.Creditos();
+            }
+
+
+            /*
+             * SAIR
+             */
+            if (option == 4) {
+
                 return true;
+            }
         }
+
+
         return false;
     }
-
-
 }
-
