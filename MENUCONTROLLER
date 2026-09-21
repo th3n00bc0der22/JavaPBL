@@ -4,18 +4,23 @@ import views.MenuView;
 
 import java.util.List;
 
+// Controla o fluxo do menu principal e direciona cada opção para a ação correspondente.
+// Também valida as opções do menu e o temperamento antes de iniciar a partida.
 public class MenuController {
 
+    // Mantém o menu em execução até que o jogador escolha a opção de sair.
     public static Boolean menuPrincipalController() {
 
         int option = 0;
 
 
+        // Repete o menu enquanto a opção de saída não for escolhida.
         while (option != 4) {
 
             option = MenuView.openMenu();
 
 
+            // Valida se a opção escolhida pertence ao menu principal.
             while (!List.of(
                     1, 2, 3, 4
             ).contains(option)) {
@@ -28,19 +33,11 @@ public class MenuController {
                         MenuView.openMenu();
             }
 
-
-            /*
-             * NOVA PARTIDA
-             */
             if (option == 1) {
 
                 int atributoOption =
                         MenuView.openAtributesMenu();
 
-
-                /*
-                 * Primeiro valida.
-                 */
                 while (!List.of(
                         1, 2, 3
                 ).contains(atributoOption)) {
@@ -53,10 +50,7 @@ public class MenuController {
                             MenuView.openAtributesMenu();
                 }
 
-
-                /*
-                 * Só depois inicia o jogo.
-                 */
+                // Cria o Controller da partida e envia o temperamento escolhido pelo jogador.
                 JogoController jogoController =
                         new JogoController();
 
@@ -66,27 +60,20 @@ public class MenuController {
             }
 
 
-            /*
-             * INSTRUÇÕES
-             */
+      
+            // Abre a tela de instruções e depois retorna ao menu.
             if (option == 2) {
 
                 MenuView.Instrucoes();
             }
 
-
-            /*
-             * CRÉDITOS
-             */
+            // Exibe os créditos do projeto.
             if (option == 3) {
 
                 MenuView.Creditos();
             }
 
-
-            /*
-             * SAIR
-             */
+            // Encerra o fluxo do menu quando o jogador seleciona a opção 4.
             if (option == 4) {
 
                 return true;
