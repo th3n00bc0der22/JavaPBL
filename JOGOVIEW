@@ -8,15 +8,14 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+// Exibe a cena atual e devolve ao Controller a opção escolhida pelo jogador.
 public class JogoView {
 
+    // Mantém um único Scanner para ler as entradas durante toda a partida.
     private static final Scanner scanner = new Scanner(System.in);
 
 
-    /*
-     * Exibe uma cena e as escolhas que o Controller
-     * determinou que estão disponíveis.
-     */
+    // Recebe a cena e apenas as escolhas que já passaram pelas condições de desbloqueio.
     public static int mostrarCena(
             Cena cena,
             List<Escolha> escolhasDisponiveis) {
@@ -24,10 +23,7 @@ public class JogoView {
         Terminal.limpaTerminal();
 
 
-        // =========================
-        // TÍTULO DA CENA
-        // =========================
-
+        // Mostra o título da cena atual.
         System.out.println(
                 "========================================"
         );
@@ -43,10 +39,7 @@ public class JogoView {
         System.out.println();
 
 
-        // =========================
-        // NARRATIVA
-        // =========================
-
+        // Mostra a descrição da cena quando existe texto narrativo cadastrado.
         if (cena.getTextoNarrativa() != null) {
 
             System.out.println(
@@ -57,18 +50,9 @@ public class JogoView {
         }
 
 
-        // =========================
-        // DIÁLOGOS
-        // =========================
-
+        // Percorre os diálogos da cena e exibe o nome do personagem antes da fala quando houver personagem associado.
         for (Dialogo dialogo : cena.getDialogos()) {
 
-            /*
-             * Se existir personagem associado,
-             * mostramos:
-             *
-             * FAUAN: Texto...
-             */
             if (dialogo.getPersonagem() != null) {
 
                 System.out.println(
@@ -79,10 +63,7 @@ public class JogoView {
 
             } else {
 
-                /*
-                 * Permite utilizar Dialogo também
-                 * para descrições sem personagem.
-                 */
+                // Permite usar Dialogo também para textos narrativos sem personagem.
                 System.out.println(
                         dialogo.getConteudo()
                 );
@@ -92,10 +73,7 @@ public class JogoView {
         }
 
 
-        // =========================
-        // CENA SEM ESCOLHAS
-        // =========================
-
+        // Cenas sem escolhas aguardam ENTER e retornam -1 para o Controller tratar a continuação.
         if (escolhasDisponiveis == null
                 || escolhasDisponiveis.isEmpty()) {
 
@@ -109,15 +87,12 @@ public class JogoView {
         }
 
 
-        // =========================
-        // ESCOLHAS
-        // =========================
-
         System.out.println(
                 "----------- ESCOLHAS -----------"
         );
 
 
+        // Numera somente as escolhas disponíveis, porque escolhas bloqueadas não podem aparecer para o jogador.
         for (int i = 0;
              i < escolhasDisponiveis.size();
              i++) {
@@ -137,36 +112,28 @@ public class JogoView {
         );
 
 
-        // =========================
-        // LEITURA DA OPÇÃO
-        // =========================
-
+        // Lê a opção digitada e retorna o número para o Controller buscar a escolha correspondente.
         try {
 
             int opcao = scanner.nextInt();
 
-            /*
-             * Remove o ENTER deixado pelo nextInt().
-             */
+            // Remove o ENTER que permanece no buffer depois do nextInt().
             scanner.nextLine();
 
             return opcao;
 
         } catch (InputMismatchException e) {
 
-            /*
-             * Remove a entrada inválida.
-             */
+            // Descarta a entrada inválida antes da próxima leitura.
             scanner.nextLine();
 
-            /*
-             * O Controller tratará 0 como inválido.
-             */
+            // O Controller trata 0 como uma opção fora do intervalo válido.
             return 0;
         }
     }
 
 
+    // Exibe a mensagem recebida pelo Controller antes de aguardar um curto intervalo.
     public static void apresentaErro(String mensagem) {
 
         System.out.println();
