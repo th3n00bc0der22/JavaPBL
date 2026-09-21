@@ -1,5 +1,6 @@
 package models;
 
+// Classe base abstrata para os personagens do jogo. Armazena informações comuns, como ID e nome.
 public abstract class Personagem {
 
     private final int id;
@@ -24,15 +25,15 @@ public abstract class Personagem {
 }
 
 
-  
+// Representa os personagens secundários da história, herdando os atributos e métodos básicos da classe Personagem.
 public class Psecundario extends Personagem {
- 
     public Psecundario(int id, String nome) {
         super(id, nome);
     }
 }
 
 
+// Representa uma pista encontrada durante a investigação, armazenando o nome da pista e uma descrição do que ela representa.
 public class Pista {
  
     private String nome;
@@ -53,7 +54,8 @@ public class Pista {
 }
 
 
-
+// Representa um diálogo presente em uma cena do jogo. Armazena quem está falando, o conteúdo da fala e o tipo do diálogo.
+public class Dialogo {
 public class Dialogo {
  
     private Personagem personagem;
@@ -85,6 +87,8 @@ public class Dialogo {
 import java.util.ArrayList;
 import java.util.List;
 !!!!!!!!!!!!!!!!!!!!!!!!!
+
+// Representa a protagonista Katarina e guarda seu estado durante a partida, mantendo atributos, relacionamentos, temperamento, postura e pistas coletadas.
 public class Protagonista extends Personagem {
     private String temperamento;
 
@@ -117,6 +121,7 @@ public class Protagonista extends Personagem {
         this.pistas = new ArrayList<>();
     }
 
+   // Limita o score dos atributos entre os valores 0 e 100
    private int limitar(int valor) {
         if (valor < 0) {
             return 0;
@@ -211,6 +216,131 @@ public class Protagonista extends Personagem {
 
 
 
+// Representa a protagonista Katarina e guarda seu estado durante a partida, mantendo atributos, relacionamentos, temperamento, postura e pistas coletadas.
+public class Protagonista extends Personagem {
+    private String temperamento;
+
+    // Os 3 atributos de Kat, com score de 0 a 100 como foi visto nas ST's
+    private int memoria;
+    private int estabilidadeEmocional;
+    private int culpaPercebida;
+
+    // Os 3 relacionamentos com Kat, com score de 0 a 100 como foi visto nas ST's
+    private int confiancaFauan;
+    private int vinculoPassos;
+    private int suspeitaToin;
+
+    // "INDEFINIDA", "NEGACAO_TOTAL" ou "DUVIDA_ABERTA".
+    private String posturaPaternidade;
+
+    // Todas as pistas colecionadas com Kat ficam armazenadas em uma lista
+    private List<Pista> pistas;
+
+    public Protagonista(int id, String nome, String temperamento) {
+        super(id, nome);
+        this.temperamento = temperamento;
+        this.memoria = 0;
+        this.estabilidadeEmocional = 50;
+        this.culpaPercebida = 50;
+        this.confiancaFauan = 50;
+        this.vinculoPassos = 50;
+        this.suspeitaToin = 50;
+        this.posturaPaternidade = "INDEFINIDA";
+        this.pistas = new ArrayList<>();
+    }
+
+   // Limita o score dos atributos entre os valores 0 e 100
+   private int limitar(int valor) {
+        if (valor < 0) {
+            return 0;
+        }
+        if (valor > 100) {
+            return 100;
+        }
+        return valor;
+    }
+
+    public String getTemperamento() {
+        return temperamento;
+    }
+
+    public int getMemoria() {
+        return memoria;
+    }
+
+    public void ajustarMemoria(int delta) {
+        memoria = limitar(memoria + delta);
+    }
+
+    public int getEstabilidadeEmocional() {
+        return estabilidadeEmocional;
+    }
+
+    public void ajustarEstabilidade(int delta) {
+        estabilidadeEmocional = limitar(estabilidadeEmocional + delta);
+    }
+
+    public int getCulpaPercebida() {
+        return culpaPercebida;
+    }
+
+    public void ajustarCulpa(int delta) {
+        culpaPercebida = limitar(culpaPercebida + delta);
+    }
+
+    public int getConfiancaFauan() {
+        return confiancaFauan;
+    }
+
+    public void ajustarConfiancaFauan(int delta) {
+        confiancaFauan = limitar(confiancaFauan + delta);
+    }
+
+    public int getVinculoPassos() {
+        return vinculoPassos;
+    }
+
+    public void ajustarVinculoPassos(int delta) {
+        vinculoPassos = limitar(vinculoPassos + delta);
+    }
+
+    public int getSuspeitaToin() {
+        return suspeitaToin;
+    }
+
+    public void ajustarSuspeitaToin(int delta) {
+        suspeitaToin = limitar(suspeitaToin + delta);
+    }
+
+    public String getPosturaPaternidade() {
+        return posturaPaternidade;
+    }
+
+    public void setPosturaPaternidade(String posturaPaternidade) {
+        this.posturaPaternidade = posturaPaternidade;
+    }
+
+    public List<Pista> getPistas() {
+        return pistas;
+    }
+  
+    //Adiciona uma pista à lista, mas primeiro verifica se ela já existe.
+    public void adicionarPista(Pista pista) {
+        if (!possuiPista(pista.getNome())) {
+            pistas.add(pista);
+        }
+    }
+
+    // Verifica se já existe uma pista com determinado nome dentro da lista pistas
+    public boolean possuiPista(String nomePista) {
+        for (Pista pista : pistas) {
+            if (pista.getNome().equals(nomePista)) {
+                return true;
+            }
+        }
+        return false;
+    }
+  }
 
 
 
@@ -219,459 +349,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Escolha {
-
-    private int id;
-    private String textoOpcao;
-    private int proximaCenaId;
-
-
-    // =========================================================
-    // CONSEQUÊNCIAS
-    // =========================================================
-
-    private int deltaMemoria;
-    private int deltaEstabilidade;
-    private int deltaCulpa;
-
-    private int deltaConfiancaFauan;
-    private int deltaVinculoPassos;
-    private int deltaSuspeitaToin;
-
-    private Pista pistaGanha;
-
-
-    // =========================================================
-    // CONDIÇÕES DE DESBLOQUEIO
-    // =========================================================
-
-    private String personagemNecessario;
-
-    private int valorMinimoNecessario;
-
-    /*
-     * Algumas escolhas exigem determinado temperamento.
-     *
-     * Valores utilizados:
-     *
-     * "SANGUE_FRIO"
-     * "EQUILIBRADO"
-     * "SANGUE_QUENTE"
-     */
-    private String temperamentoNecessario;
-
-
-    /*
-     * Uma escolha pode exigir MAIS DE UMA pista.
-     *
-     * Exemplo:
-     *
-     * "Pergunta sobre o alarme"
-     * +
-     * "Alarme desligado manualmente"
-     */
-    private List<String> pistasNecessarias;
-
-
-    /*
-     * Algumas escolhas do Capítulo 5 dependem
-     * da postura definida no Capítulo 4.
-     *
-     * "NEGACAO_TOTAL"
-     * ou
-     * "DUVIDA_ABERTA"
-     */
-    private String posturaNecessaria;
-
-
-    // =========================================================
-    // OUTRAS CARACTERÍSTICAS DA ESCOLHA
-    // =========================================================
-
-    /*
-     * Tom da resposta:
-     *
-     * "SANGUE_FRIO"
-     * "EQUILIBRADO"
-     * "SANGUE_QUENTE"
-     */
-    private String tom;
-
-
-    /*
-     * Algumas escolhas alteram a postura
-     * da protagonista sobre a paternidade.
-     */
-    private String posturaResultante;
-
-
-    // =========================================================
-    // CONSTRUTOR
-    // =========================================================
-
-    public Escolha(
-            int id,
-            String textoOpcao,
-            int proximaCenaId) {
-
-        this.id = id;
-        this.textoOpcao = textoOpcao;
-        this.proximaCenaId = proximaCenaId;
-
-        /*
-         * Toda escolha começa sem exigir pistas.
-         */
-        this.pistasNecessarias = new ArrayList<>();
-    }
-
-
-    // =========================================================
-    // GETTERS
-    // =========================================================
-
-    public int getId() {
-        return id;
-    }
-
-
-    public String getTextoOpcao() {
-        return textoOpcao;
-    }
-
-
-    public int getProximaCenaId() {
-        return proximaCenaId;
-    }
-
-
-    // =========================================================
-    // DEFINIÇÃO DOS EFEITOS
-    // =========================================================
-
-    public void definirEfeitos(
-            int deltaMemoria,
-            int deltaEstabilidade,
-            int deltaCulpa,
-            int deltaConfiancaFauan,
-            int deltaVinculoPassos,
-            int deltaSuspeitaToin) {
-
-        this.deltaMemoria =
-                deltaMemoria;
-
-        this.deltaEstabilidade =
-                deltaEstabilidade;
-
-        this.deltaCulpa =
-                deltaCulpa;
-
-        this.deltaConfiancaFauan =
-                deltaConfiancaFauan;
-
-        this.deltaVinculoPassos =
-                deltaVinculoPassos;
-
-        this.deltaSuspeitaToin =
-                deltaSuspeitaToin;
-    }
-
-
-    public void definirPistaGanha(
-            Pista pista) {
-
-        this.pistaGanha = pista;
-    }
-
-
-    // =========================================================
-    // CONDIÇÕES
-    // =========================================================
-
-    /*
-     * Define:
-     *
-     * - personagem relacionado à condição;
-     * - valor mínimo necessário;
-     * - temperamento necessário.
-     *
-     * Exemplos:
-     *
-     * definirCondicao(
-     *     "Toin",
-     *     40,
-     *     "SANGUE_FRIO"
-     * );
-     *
-     * definirCondicao(
-     *     "Passos",
-     *     65,
-     *     null
-     * );
-     */
-    public void definirCondicao(
-            String personagemNecessario,
-            int valorMinimoNecessario,
-            String temperamentoNecessario) {
-
-        this.personagemNecessario =
-                personagemNecessario;
-
-        this.valorMinimoNecessario =
-                valorMinimoNecessario;
-
-        this.temperamentoNecessario =
-                temperamentoNecessario;
-    }
-
-
-    /*
-     * Uma escolha pode exigir várias pistas.
-     *
-     * Basta chamar este método várias vezes.
-     */
-    public void adicionarPistaNecessaria(
-            String nomePista) {
-
-        pistasNecessarias.add(
-                nomePista
-        );
-    }
-
-
-    /*
-     * Define a postura que precisa existir
-     * para que a escolha apareça.
-     */
-    public void definirPosturaNecessaria(
-            String postura) {
-
-        this.posturaNecessaria =
-                postura;
-    }
-
-
-    // =========================================================
-    // TOM
-    // =========================================================
-
-    public void definirTom(
-            String tom) {
-
-        this.tom = tom;
-    }
-
-
-    // =========================================================
-    // POSTURA RESULTANTE
-    // =========================================================
-
-    /*
-     * Define qual postura será assumida
-     * DEPOIS que essa escolha for selecionada.
-     */
-    public void definirPosturaResultante(
-            String postura) {
-
-        this.posturaResultante =
-                postura;
-    }
-
-
-    // =========================================================
-    // VERIFICA SE A ESCOLHA ESTÁ DISPONÍVEL
-    // =========================================================
-
-    public boolean estaDisponivel(
-            Protagonista protagonista) {
-
-
-        // -----------------------------------------------------
-        // RELACIONAMENTO
-        // -----------------------------------------------------
-
-        if (personagemNecessario != null) {
-
-            int valorAtual = 0;
-
-
-            if (personagemNecessario.equals("Fauan")) {
-
-                valorAtual =
-                        protagonista.getConfiancaFauan();
-
-            } else if (
-                    personagemNecessario.equals("Passos")) {
-
-                valorAtual =
-                        protagonista.getVinculoPassos();
-
-            } else if (
-                    personagemNecessario.equals("Toin")) {
-
-                valorAtual =
-                        protagonista.getSuspeitaToin();
-            }
-
-
-            if (valorAtual
-                    < valorMinimoNecessario) {
-
-                return false;
-            }
-        }
-
-
-        // -----------------------------------------------------
-        // TEMPERAMENTO
-        // -----------------------------------------------------
-
-        if (temperamentoNecessario != null
-                && !temperamentoNecessario.equals(
-                        protagonista.getTemperamento()
-                )) {
-
-            return false;
-        }
-
-
-        // -----------------------------------------------------
-        // PISTAS
-        // -----------------------------------------------------
-
-        /*
-         * TODAS as pistas adicionadas precisam existir.
-         */
-        for (String pista : pistasNecessarias) {
-
-            if (!protagonista.possuiPista(
-                    pista
-            )) {
-
-                return false;
-            }
-        }
-
-
-        // -----------------------------------------------------
-        // POSTURA
-        // -----------------------------------------------------
-
-        if (posturaNecessaria != null
-                && !posturaNecessaria.equals(
-                        protagonista.getPosturaPaternidade()
-                )) {
-
-            return false;
-        }
-
-
-        return true;
-    }
-
-
-    // =========================================================
-    // APLICA AS CONSEQUÊNCIAS
-    // =========================================================
-
-    public void aplicarConsequencias(
-            Protagonista protagonista) {
-
-
-        // -----------------------------------------------------
-        // DELTAS
-        // -----------------------------------------------------
-
-        protagonista.ajustarMemoria(
-                deltaMemoria
-        );
-
-        protagonista.ajustarEstabilidade(
-                deltaEstabilidade
-        );
-
-        protagonista.ajustarCulpa(
-                deltaCulpa
-        );
-
-        protagonista.ajustarConfiancaFauan(
-                deltaConfiancaFauan
-        );
-
-        protagonista.ajustarVinculoPassos(
-                deltaVinculoPassos
-        );
-
-        protagonista.ajustarSuspeitaToin(
-                deltaSuspeitaToin
-        );
-
-
-        // -----------------------------------------------------
-        // PISTA GANHA
-        // -----------------------------------------------------
-
-        if (pistaGanha != null) {
-
-            protagonista.adicionarPista(
-                    pistaGanha
-            );
-        }
-
-
-        // -----------------------------------------------------
-        // POSTURA DE PATERNIDADE
-        // -----------------------------------------------------
-
-        if (posturaResultante != null) {
-
-            protagonista.setPosturaPaternidade(
-                    posturaResultante
-            );
-        }
-
-
-        // -----------------------------------------------------
-        // MECÂNICA DE TOM
-        // -----------------------------------------------------
-
-        /*
-         * Capítulo 2, 4 e 5:
-         *
-         * Tom == Temperamento
-         *      +5 Estabilidade
-         *
-         * Tom != Temperamento
-         *      -5 Estabilidade
-         *      +5 Confiança em Fauan
-         */
-        if (tom != null) {
-
-            if (tom.equals(
-                    protagonista.getTemperamento()
-            )) {
-
-                protagonista.ajustarEstabilidade(
-                        5
-                );
-
-            } else {
-
-                protagonista.ajustarEstabilidade(
-                        -5
-                );
-
-                protagonista.ajustarConfiancaFauan(
-                        5
-                );
-            }
-        }
-    }
-}
-
-
-
-
-
+// Representa uma cena da história, contendo narrativa, diálogos e escolhas.
 public class Cena {
 
     private int id;
@@ -679,10 +357,12 @@ public class Cena {
     private String textoNarrativa;
     private String tipo;
 
+    // Lista com todas as escolhas e diálogos pertencentes à cena.
     private List<Escolha> escolhas;
     private List<Dialogo> dialogos;
 
-
+    // ID da próxima cena quando não existe uma escolha do jogador.
+    // O valor -1 indica que não existe uma transição automática.
     private int proximaCenaId;
 
 
@@ -696,7 +376,7 @@ public class Cena {
         this.escolhas = new ArrayList<>();
         this.dialogos = new ArrayList<>();
 
-        this.proximaCenaId = -1;  // -1 significa que não existe próxima cena automática.
+        this.proximaCenaId = -1;
     }
 
 
@@ -725,6 +405,7 @@ public class Cena {
     }
 
 
+    // Adiciona uma nova alternativa de escolha à cena.
     public void adicionarEscolha(Escolha escolha) {
         escolhas.add(escolha);
     }
@@ -735,11 +416,13 @@ public class Cena {
     }
 
 
+    // Adiciona uma fala ou informação narrativa à cena.
     public void adicionarDialogo(Dialogo dialogo) {
         dialogos.add(dialogo);
     }
 
-     // Define para onde o jogo irá quando essa cena não possuir nenhuma escolha(cap 3)
+
+    // Define a próxima cena para situações em que não existe escolha do jogador.
     public void definirProximaCena(int proximaCenaId) {
         this.proximaCenaId = proximaCenaId;
     }
@@ -750,8 +433,7 @@ public class Cena {
     }
 
 
-    // Retorna apenas as escolhas que o jogador realmente pode utilizar naquele momento.
-
+    // Percorre as escolhas da cena e retorna apenas aquelas liberadas para a protagonista.
     public List<Escolha> getEscolhasDisponiveis(Protagonista protagonista) {
 
         List<Escolha> disponiveis = new ArrayList<>();
@@ -768,9 +450,8 @@ public class Cena {
 }
 
 
-import java.util.ArrayList;
-import java.util.List;
- 
+
+// Representa um capítulo da história, responsável por agrupar e organizar suas cenas.
 public class Capitulo {
  
     private int id;
@@ -799,7 +480,7 @@ public class Capitulo {
         cenas.add(cena);
     }
  
-    // Busca simples em lista (for comum), sem Map.
+    // Busca simples em lista.
     public Cena getCena(int id) {
         for (Cena cena : cenas) {
             if (cena.getId() == id) {
@@ -819,7 +500,6 @@ public class Capitulo {
 
 
 //Guarda o estado geral da partida: personagens, capítulos, capítulo jogado, cena jogada, jogo terminou, final alcançado
- *
 public class EstadoJogo {
 
     private Protagonista protagonista;
