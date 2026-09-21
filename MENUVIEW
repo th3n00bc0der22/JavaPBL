@@ -3,19 +3,15 @@ package views;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Mostra as telas do menu e devolve ao Controller as opções digitadas pelo jogador.
 public class MenuView {
 
-    /*
-     * Um único Scanner para toda a classe.
-     */
+    // O mesmo Scanner é reutilizado no menu principal, temperamento, instruções e créditos.
     private static final Scanner scanner =
             new Scanner(System.in);
 
 
-    // ==============================
-    // MENU PRINCIPAL
-    // ==============================
-
+    // Exibe as quatro opções do menu principal e retorna a opção digitada.
     public static int openMenu() {
 
         Terminal.limpaTerminal();
@@ -55,14 +51,12 @@ public class MenuView {
         );
 
 
+        // Retorna -1 quando a entrada não é numérica para que o MenuController faça a validação.
         try {
 
             int opcao = scanner.nextInt();
 
-            /*
-             * IMPORTANTE:
-             * remove o ENTER deixado pelo nextInt().
-             */
+            // Remove o ENTER que permanece no buffer depois do nextInt().
             scanner.nextLine();
 
             return opcao;
@@ -76,10 +70,7 @@ public class MenuView {
     }
 
 
-    // ==============================
-    // ESCOLHA DO TEMPERAMENTO
-    // ==============================
-
+    // Mostra os três temperamentos disponíveis antes do início de uma nova partida.
     public static int openAtributesMenu() {
 
         Terminal.limpaTerminal();
@@ -125,6 +116,7 @@ public class MenuView {
         );
 
 
+        // Retorna a opção numérica ou -1 para que o Controller rejeite uma entrada inválida.
         try {
 
             int opcao = scanner.nextInt();
@@ -142,10 +134,7 @@ public class MenuView {
     }
 
 
-    // ==============================
-    // INSTRUÇÕES
-    // ==============================
-
+    // Explica o contexto da investigação e quais elementos podem mudar com as escolhas.
     public static void Instrucoes() {
 
         Terminal.limpaTerminal();
@@ -312,10 +301,7 @@ public class MenuView {
     }
 
 
-    // ==============================
-    // CRÉDITOS
-    // ==============================
-
+    // Mostra os nomes dos desenvolvedores e aguarda ENTER antes de retornar ao menu.
     public static void Creditos() {
 
         Terminal.limpaTerminal();
@@ -366,10 +352,7 @@ public class MenuView {
     }
 
 
-    // ==============================
-    // ERRO
-    // ==============================
-
+    // Mostra a mensagem de erro enviada pelo Controller e aplica um atraso antes da nova tentativa.
     public static void apresentaErro(
             String mensagem) {
 
