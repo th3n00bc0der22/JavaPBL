@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Protagonista;
 import views.MenuView;
 
 import java.awt.*;
@@ -76,6 +77,17 @@ public class MenuController {
 
                 if (optionDados == 1){
                   MenuView.salvandoDados();
+                    Protagonista kat = new Protagonista(1, "Kat", "Sangue Frio");
+
+                    // A memória começa em 0, vai para 20
+                    kat.ajustarMemoria(20);
+                    // A estabilidade começa em 50, cai para 40
+                    kat.ajustarEstabilidade(-10);
+
+                    Database save = new Database("save_kat.json");
+                    save.salvarProgresso(kat);
+
+                    Protagonista katCarregada = save.carregarProgresso();
                 }
 
                 else if(optionDados == -1) {

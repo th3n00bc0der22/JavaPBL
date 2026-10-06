@@ -1,6 +1,9 @@
 package models;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,32 @@ public class Protagonista extends Personagem {
         this.suspeitaToin = 50;
         this.posturaPaternidade = "INDEFINIDA";
         this.pistas = new ArrayList<>();
+    }
+
+    @JsonCreator
+    public Protagonista(
+            @JsonProperty("id") int id,
+            @JsonProperty("nome") String nome,
+            @JsonProperty("temperamento") String temperamento,
+            @JsonProperty("memoria") int memoria,
+            @JsonProperty("estabilidadeEmocional") int estabilidadeEmocional,
+            @JsonProperty("culpaPercebida") int culpaPercebida,
+            @JsonProperty("confiancaFauan") int confiancaFauan,
+            @JsonProperty("vinculoPassos") int vinculoPassos,
+            @JsonProperty("suspeitaToin") int suspeitaToin,
+            @JsonProperty("posturaPaternidade") String posturaPaternidade,
+            @JsonProperty("pistas") List pistas) {
+
+        super(id, nome);
+        this.temperamento = temperamento;
+        this.memoria = memoria;
+        this.estabilidadeEmocional = estabilidadeEmocional;
+        this.culpaPercebida = culpaPercebida;
+        this.confiancaFauan = confiancaFauan;
+        this.vinculoPassos = vinculoPassos;
+        this.suspeitaToin = suspeitaToin;
+        this.posturaPaternidade = posturaPaternidade;
+        this.pistas = pistas != null ? pistas : new ArrayList<>();
     }
 
     private int limitar(int valor) {

@@ -1,0 +1,17 @@
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/Main.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/controllers/Database.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/controllers/JogoController.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/controllers/MenuController.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Capitulo.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Cena.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Dialogo.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Escolha.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/EstadoJogo.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Personagem.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Pista.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Prelacionavel.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Protagonista.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/models/Psecundario.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/views/JogoView.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/views/MenuView.java
+/home/kyouma/Documents/UEFS/PBL/JavaPBL/src/main/java/views/Terminal.java

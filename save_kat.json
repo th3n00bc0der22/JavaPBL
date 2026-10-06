@@ -1,0 +1,13 @@
+{
+  "id" : 1,
+  "nome" : "Kat",
+  "temperamento" : "Sangue Frio",
+  "memoria" : 20,
+  "estabilidadeEmocional" : 40,
+  "culpaPercebida" : 50,
+  "confiancaFauan" : 50,
+  "vinculoPassos" : 50,
+  "suspeitaToin" : 50,
+  "posturaPaternidade" : "INDEFINIDA",
+  "pistas" : [ ]
+}
