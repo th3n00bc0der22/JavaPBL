@@ -1,4 +1,4 @@
-package Tests;
+package test.java.Tests;
 
 import models.Cena;
 import models.Escolha;
@@ -6,8 +6,6 @@ import models.Protagonista;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-import models.Dialogo;
-
 
 
 class CenaTest {

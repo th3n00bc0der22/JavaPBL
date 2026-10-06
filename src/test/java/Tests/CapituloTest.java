@@ -1,4 +1,4 @@
-package Tests;
+package test.java.Tests;
 
 
 import models.Capitulo;

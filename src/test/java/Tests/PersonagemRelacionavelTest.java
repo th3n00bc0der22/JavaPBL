@@ -1,4 +1,4 @@
-package Tests;
+package test.java.Tests;
 import models.Prelacionavel;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
