@@ -12,7 +12,6 @@ public class JogoView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-
     /*
      * Exibe uma cena e as escolhas que o Controller
      * determinou que estão disponíveis.
@@ -22,7 +21,6 @@ public class JogoView {
             List<Escolha> escolhasDisponiveis) {
 
         Terminal.limpaTerminal();
-
 
         // =========================
         // TÍTULO DA CENA
@@ -41,7 +39,6 @@ public class JogoView {
         );
 
         System.out.println();
-
 
         // =========================
         // NARRATIVA
@@ -70,7 +67,6 @@ public class JogoView {
              * FAUAN: Texto...
              */
             if (dialogo.getPersonagem() != null) {
-
                 System.out.println(
                         dialogo.getPersonagem().getNome()
                                 + ": "
@@ -154,7 +150,6 @@ public class JogoView {
         // =========================
 
         try {
-
             int opcao = scanner.nextInt();
 
             /*
@@ -165,12 +160,10 @@ public class JogoView {
             return opcao;
 
         } catch (InputMismatchException e) {
-
             /*
              * Remove a entrada inválida.
              */
             scanner.nextLine();
-
             /*
              * O Controller tratará uma entrada vazia ou letras como inválido.
              */
@@ -178,13 +171,9 @@ public class JogoView {
         }
     }
 
-
     public static void apresentaErro(String mensagem) {
-
         System.out.println();
-
         System.out.println(mensagem);
-
         Terminal.aplicaDelay(900);
     }
 }

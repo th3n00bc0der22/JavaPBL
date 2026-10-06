@@ -2233,18 +2233,15 @@ public class JogoController {
                 continue;
             }
 
-
             processarEventoAoEntrarNaCena(
                     cenaAtual,
                     protagonista
             );
 
-
             List<Escolha> escolhasDisponiveis =
                     cenaAtual.getEscolhasDisponiveis(
                             protagonista
                     );
-
 
             int opcaoEscolhida =
                     JogoView.mostrarCena(

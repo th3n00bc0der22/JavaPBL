@@ -47,7 +47,10 @@ public class MenuView {
         );
 
         System.out.println(
-                "4 - Sair"
+                "4 - Salvar dados"
+        );
+        System.out.println(
+                "5 - Sair"
         );
 
         System.out.print(
@@ -74,7 +77,42 @@ public class MenuView {
             return -1;
         }
     }
+    public static int salvarDados(){
+        Terminal.limpaTerminal();
+        System.out.println("bem vindo a tela de salvar dados");
+        System.out.println("1- Salvar");
+        System.out.println("2- Sair");
+        //Terminal.aplicaDelay(1000);
+        try {
 
+            int opcao = scanner.nextInt();
+
+            /*
+             * IMPORTANTE:
+             * remove o ENTER deixado pelo nextInt().
+             */
+            scanner.nextLine();
+
+            return opcao;
+
+        } catch (InputMismatchException e) {
+
+            scanner.nextLine();
+
+            return -1;
+        }
+
+    }
+
+    public static void salvandoDados(){
+        for (int i = 0; i<5; i++) {
+            System.out.print(".");
+            Terminal.aplicaDelay(350);
+           // System.out.println("oi?");
+        }
+        System.out.println("\ndados salvos com sucesso!");
+        Terminal.aplicaDelay(650);
+    }
 
     // ==============================
     // ESCOLHA DO TEMPERAMENTO
